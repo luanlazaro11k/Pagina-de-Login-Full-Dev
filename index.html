@@ -7,9 +7,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
+        /* =============================================
+           DEFINIÇÃO DAS VARIÁVEIS DE COR
+           =============================================
+        */
+        :root {
+            --page-bg: #f4f4f9;
+            --container-bg: #fff;
+            --text-primary: #333;
+            --text-secondary: #777;
+            --text-placeholder: #999;
+            --text-link: #4a90e2;
+            --text-link-hover: #357abd;
+            --text-highlight: #e33;
+            --border-light: #eee;    /* Separador social */
+            --border-medium: #ddd;   /* Borda login social */
+            --border-dark: #ccc;     /* Borda do input */
+            --input-bg: #fff;
+            --hover-light: #f7f7f7;  /* Hover login social */
+            --button-bg: #e33;
+            --button-bg-hover: #c82333;
+            --button-text: #fff;
+
+            /* Adiciona uma transição suave para as cores */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            --page-bg: #121212;
+            --container-bg: #1e1e1e;
+            --text-primary: #f1f1f1;
+            --text-secondary: #a0a0a0;
+            --text-placeholder: #777;
+            --text-link: #52a9ff;
+            --text-link-hover: #75c0ff;
+            --text-highlight: #ff4d4d;
+            --border-light: #333;
+            --border-medium: #444;
+            --border-dark: #555;
+            --input-bg: #2a2a2a;
+            --hover-light: #2c2c2c;
+            --button-bg: #e33;        /* Mantive o botão vermelho */
+            --button-bg-hover: #c82333;
+            --button-text: #fff;
+        }
+        /* =============================================
+           CSS REFEITO COM VARIÁVEIS
+           =============================================
+        */
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f4f9;
+            background-color: var(--page-bg); /* Alterado */
+            color: var(--text-secondary);     /* Alterado */
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,7 +70,7 @@
         .page-container {
             display: none; 
             width: 360px;
-            background: #fff;
+            background: var(--container-bg); /* Alterado */
             padding: 30px 40px;
             border-radius: 12px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -28,7 +78,7 @@
             margin: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .page-container.active {
             display: block;
         }
@@ -41,12 +91,12 @@
 
         h1 {
             font-size: 22px;
-            color: #333;
+            color: var(--text-primary); /* Alterado */
             margin-bottom: 5px;
         }
 
         p {
-            color: #777;
+            color: var(--text-secondary); /* Alterado */
             margin-bottom: 20px;
         }
         .input-group {
@@ -57,7 +107,7 @@
         .input-group label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
+            color: var(--text-secondary); /* Alterado */
             font-size: 14px;
         }
 
@@ -66,15 +116,23 @@
         input[type="email"] { 
             width: 100%;
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-dark);     /* Alterado */
+            background-color: var(--input-bg);        /* Alterado */
+            color: var(--text-primary);               /* Alterado */
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 16px;
         }
+        /* Estilo para o placeholder */
+        input::placeholder {
+            color: var(--text-placeholder); /* Alterado */
+            opacity: 1; /* Firefox */
+        }
+        
         button {
             width: 100%;
-            background-color: #e33;
-            color: #fff;
+            background-color: var(--button-bg); /* Alterado */
+            color: var(--button-text);        /* Alterado */
             border: none;
             padding: 12px;
             border-radius: 8px;
@@ -85,7 +143,7 @@
         }
 
         button:hover {
-            background-color: #c82333;
+            background-color: var(--button-bg-hover); /* Alterado */
         }
         .forgot-password {
             text-align: right;
@@ -93,20 +151,20 @@
             font-size: 14px;
         }
         .forgot-password a, .back-to-login a {
-            color: #4a90e2;
+            color: var(--text-link); /* Alterado */
             text-decoration: none;
             cursor: pointer;
             transition: color 0.3s;
         }
         .forgot-password a:hover, .back-to-login a:hover {
-            color: #357abd;
+            color: var(--text-link-hover); /* Alterado */
             text-decoration: underline;
         }
         .social-separator {
             text-align: center;
             margin: 25px 0 15px 0;
             font-size: 14px;
-            color: #999;
+            color: var(--text-placeholder); /* Alterado */
             display: flex;
             align-items: center;
         }
@@ -114,7 +172,7 @@
             content: '';
             flex-grow: 1;
             height: 1px;
-            background-color: #eee;
+            background-color: var(--border-light); /* Alterado */
             margin: 0 10px;
         }
         .social-login {
@@ -122,15 +180,17 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-medium); /* Alterado */
             border-radius: 8px;
             padding: 10px;
             margin-top: 10px;
             cursor: pointer;
             transition: background 0.3s;
+            text-decoration: none; 
+            color: var(--text-primary);           /* Alterado */
         }
         .social-login:hover {
-            background: #f7f7f7;
+            background: var(--hover-light); /* Alterado */
         }
         .social-login img {
             width: 20px;
@@ -146,7 +206,7 @@
             left: 12px;
             top: 50%; 
             transform: translateY(-50%); 
-            color: #777;
+            color: var(--text-secondary); /* Alterado */
             font-size: 16px;
         }
         .input-group-icon input {
@@ -175,19 +235,104 @@
         }
         .full-page-content p {
             font-size: 18px;
-            color: #555;
+            color: var(--text-secondary); /* Alterado */
             margin-bottom: 30px;
         }
         .highlight-email {
             font-weight: bold;
-            color: #e33; 
+            color: var(--text-highlight); /* Alterado */
             word-wrap: break-word; 
             display: block; 
             margin-top: 5px;
         }
+
+        /* =============================================
+           NOVOS ESTILOS DO INTERRUPTOR (DARK MODE)
+           =============================================
+        */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+        }
+
+        .theme-switch-wrapper .fas {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Escondendo o checkbox padrão */
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px; /* Tamanho menor */
+            height: 24px; /* Tamanho menor */
+        }
+
+        /* A base do slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border-dark);
+            transition: .4s;
+        }
+
+        /* O círculo que se move */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; /* Menor */
+            width: 18px;  /* Menor */
+            left: 3px;    /* Ajustado */
+            bottom: 3px;  /* Ajustado */
+            background-color: white;
+            transition: .4s;
+        }
+
+        /* Quando checado, muda a cor do slider */
+        input:checked + .slider {
+            background-color: var(--text-link); 
+        }
+
+        /* Quando checado, move o círculo */
+        input:checked + .slider:before {
+            transform: translateX(20px); /* Distância menor */
+        }
+
+        /* Deixa o slider redondo */
+        .slider.round {
+            border-radius: 24px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
+
+    <div class="theme-switch-wrapper">
+        <i class="fas fa-sun"></i>
+        <label class="theme-switch" for="dark-mode-toggle">
+            <input type="checkbox" id="dark-mode-toggle" />
+            <div class="slider round"></div>
+        </label>
+        <i class="fas fa-moon"></i>
+    </div>
 
     <div class="page-container active" id="login-page">
         <div class="logo">
@@ -214,14 +359,14 @@
         
         <div class="social-separator">Ou continue com</div>
 
-        <div class="google-login social-login">
+        <a href="https://accounts.google.com/" target="_blank" class="google-login social-login">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google logo">
             <span>Entrar com Google</span>
-        </div>
-        <div class="facebook-login social-login">
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" class="facebook-login social-login">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" alt="Facebook logo">
             <span>Entrar com Facebook</span>
-        </div>
+        </a>
     </div>
 
     <div class="page-container" id="reset-page">
@@ -282,27 +427,33 @@
 
     <script>
         let lastEmail = ''; 
+        
+        /* --- LÓGICA DE NAVEGAÇÃO DE PÁGINA --- */
+        
         function showPage(pageId) {
             document.querySelectorAll('.page-container').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-      
+        
             if (pageId === 'confirmation-reset-page' && lastEmail) {
                 document.getElementById('email-display').textContent = lastEmail;
             }
         }
+        
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); 
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
 
             if (usuario && senha) {
+                // Simplesmente simula um login bem-sucedido
                 showPage('home-page');
             } else {
                 alert("Por favor, preencha todos os campos!");
             }
         });
+        
         document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
             event.preventDefault();
             const emailInput = document.getElementById("email");
@@ -311,11 +462,41 @@
             if (email) {
                 lastEmail = email; 
                 showPage('confirmation-reset-page');
-                emailInput.value = '';
+                emailInput.value = ''; // Limpa o campo
             } else {
                 alert("Por favor, insira seu e-mail.");
             }
         });
+
+        /* --- LÓGICA DO DARK MODE --- */
+
+        // Seleciona o interruptor
+        const toggleSwitch = document.getElementById('dark-mode-toggle');
+
+        // Função para aplicar o tema
+        function setTheme(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark'); // Salva a preferência
+                toggleSwitch.checked = true;
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.removeItem('theme'); // Remove a preferência
+                toggleSwitch.checked = false;
+            }
+        }
+
+        // Verifica o localStorage ao carregar a página
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            setTheme(true);
+        }
+
+        // Adiciona o listener para o clique no interruptor
+        toggleSwitch.addEventListener('change', function() {
+            setTheme(this.checked);
+        });
+
     </script>
 
 </body>

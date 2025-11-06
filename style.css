@@ -8,7 +8,8 @@ body {
     align-items: center;
     min-height: 100vh;
 }
-.login-container {
+.page-container {
+    display: none; 
     width: 360px;
     background: #fff;
     padding: 30px 40px;
@@ -16,17 +17,25 @@ body {
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     text-align: center;
     margin: 0;
+    transition: opacity 0.3s ease;
 }
+
+.page-container.active {
+    display: block;
+}
+
 .logo img {
     width: 140px;
     height: auto;
     margin-bottom: 10px;
 }
+
 h1 {
     font-size: 22px;
     color: #333;
     margin-bottom: 5px;
 }
+
 p {
     color: #777;
     margin-bottom: 20px;
@@ -42,6 +51,7 @@ p {
     color: #555;
     font-size: 14px;
 }
+
 input[type="text"],
 input[type="password"],
 input[type="email"] { 
@@ -73,27 +83,25 @@ button:hover {
     margin-top: 10px;
     font-size: 14px;
 }
-
-.forgot-password a {
-    color: #4a90e2; 
+.forgot-password a, .back-to-login a {
+    color: #4a90e2;
     text-decoration: none;
+    cursor: pointer;
     transition: color 0.3s;
 }
-
-.forgot-password a:hover {
+.forgot-password a:hover, .back-to-login a:hover {
     color: #357abd;
+    text-decoration: underline;
 }
 .social-separator {
     text-align: center;
-    margin: 25px 0 15px 0; 
+    margin: 25px 0 15px 0;
     font-size: 14px;
     color: #999;
     display: flex;
     align-items: center;
 }
-
-.social-separator::before,
-.social-separator::after {
+.social-separator::before, .social-separator::after {
     content: '';
     flex-grow: 1;
     height: 1px;
@@ -111,23 +119,22 @@ button:hover {
     margin-top: 10px;
     cursor: pointer;
     transition: background 0.3s;
+    /* Alterações aqui para corrigir a aparência do link */
+    text-decoration: none; 
+    color: #333;           
 }
-
 .social-login:hover {
     background: #f7f7f7;
 }
-
 .social-login img {
     width: 20px;
     height: 20px;
 }
-
 .input-group-icon {
     position: relative;
     margin-bottom: 15px;
     text-align: left;
 }
-
 .input-group-icon .icon {
     position: absolute;
     left: 12px;
@@ -136,25 +143,12 @@ button:hover {
     color: #777;
     font-size: 16px;
 }
-
 .input-group-icon input {
     padding-left: 40px; 
 }
-
 .back-to-login {
     margin-top: 25px; 
     font-size: 14px;
-}
-
-.back-to-login a {
-    color: #4a90e2; 
-    text-decoration: none; 
-    transition: color 0.3s;
-}
-
-.back-to-login a:hover {
-    color: #357abd; 
-    text-decoration: underline; 
 }
 .sr-only {
     position: absolute;
@@ -166,8 +160,22 @@ button:hover {
     clip: rect(0,0,0,0);
     border: 0;
 }
-
-.home-container, .confirmacao-container {
-    text-align: center;
-    margin-top: 100px;
+.full-page-content {
+    padding: 40px 20px;
+}
+.full-page-content h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+.full-page-content p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+.highlight-email {
+    font-weight: bold;
+    color: #e33; 
+    word-wrap: break-word; 
+    display: block; 
+    margin-top: 5px;
 }
