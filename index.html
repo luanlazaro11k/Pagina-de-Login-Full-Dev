@@ -5,330 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Full Dev - Navegação Única</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* =============================================
-           DEFINIÇÃO DAS VARIÁVEIS DE COR
-           =============================================
-        */
-        :root {
-            --page-bg: #f4f4f9;
-            --container-bg: #fff;
-            --text-primary: #333;
-            --text-secondary: #777;
-            --text-placeholder: #999;
-            --text-link: #4a90e2;
-            --text-link-hover: #357abd;
-            --text-highlight: #e33;
-            --border-light: #eee;    /* Separador social */
-            --border-medium: #ddd;   /* Borda login social */
-            --border-dark: #ccc;     /* Borda do input */
-            --input-bg: #fff;
-            --hover-light: #f7f7f7;  /* Hover login social */
-            --button-bg: #e33;
-            --button-bg-hover: #c82333;
-            --button-text: #fff;
-
-            /* Adiciona uma transição suave para as cores */
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark-mode {
-            --page-bg: #121212;
-            --container-bg: #1e1e1e;
-            --text-primary: #f1f1f1;
-            --text-secondary: #a0a0a0;
-            --text-placeholder: #777;
-            --text-link: #52a9ff;
-            --text-link-hover: #75c0ff;
-            --text-highlight: #ff4d4d;
-            --border-light: #333;
-            --border-medium: #444;
-            --border-dark: #555;
-            --input-bg: #2a2a2a;
-            --hover-light: #2c2c2c;
-            --button-bg: #e33;        /* Mantive o botão vermelho */
-            --button-bg-hover: #c82333;
-            --button-text: #fff;
-        }
-        /* =============================================
-           CSS REFEITO COM VARIÁVEIS
-           =============================================
-        */
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: var(--page-bg); /* Alterado */
-            color: var(--text-secondary);     /* Alterado */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .page-container {
-            display: none; 
-            width: 360px;
-            background: var(--container-bg); /* Alterado */
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            text-align: center;
-            margin: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        .logo img {
-            width: 140px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 22px;
-            color: var(--text-primary); /* Alterado */
-            margin-bottom: 5px;
-        }
-
-        p {
-            color: var(--text-secondary); /* Alterado */
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-secondary); /* Alterado */
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"] { 
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-dark);     /* Alterado */
-            background-color: var(--input-bg);        /* Alterado */
-            color: var(--text-primary);               /* Alterado */
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        /* Estilo para o placeholder */
-        input::placeholder {
-            color: var(--text-placeholder); /* Alterado */
-            opacity: 1; /* Firefox */
-        }
-        
-        button {
-            width: 100%;
-            background-color: var(--button-bg); /* Alterado */
-            color: var(--button-text);        /* Alterado */
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 15px; 
-        }
-
-        button:hover {
-            background-color: var(--button-bg-hover); /* Alterado */
-        }
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        .forgot-password a, .back-to-login a {
-            color: var(--text-link); /* Alterado */
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .forgot-password a:hover, .back-to-login a:hover {
-            color: var(--text-link-hover); /* Alterado */
-            text-decoration: underline;
-        }
-        .social-separator {
-            text-align: center;
-            margin: 25px 0 15px 0;
-            font-size: 14px;
-            color: var(--text-placeholder); /* Alterado */
-            display: flex;
-            align-items: center;
-        }
-        .social-separator::before, .social-separator::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background-color: var(--border-light); /* Alterado */
-            margin: 0 10px;
-        }
-        .social-login {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            border: 1px solid var(--border-medium); /* Alterado */
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-decoration: none; 
-            color: var(--text-primary);           /* Alterado */
-        }
-        .social-login:hover {
-            background: var(--hover-light); /* Alterado */
-        }
-        .social-login img {
-            width: 20px;
-            height: 20px;
-        }
-        .input-group-icon {
-            position: relative;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-group-icon .icon {
-            position: absolute;
-            left: 12px;
-            top: 50%; 
-            transform: translateY(-50%); 
-            color: var(--text-secondary); /* Alterado */
-            font-size: 16px;
-        }
-        .input-group-icon input {
-            padding-left: 40px; 
-        }
-        .back-to-login {
-            margin-top: 25px; 
-            font-size: 14px;
-        }
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            border: 0;
-        }
-        .full-page-content {
-            padding: 40px 20px;
-        }
-        .full-page-content h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        .full-page-content p {
-            font-size: 18px;
-            color: var(--text-secondary); /* Alterado */
-            margin-bottom: 30px;
-        }
-        .highlight-email {
-            font-weight: bold;
-            color: var(--text-highlight); /* Alterado */
-            word-wrap: break-word; 
-            display: block; 
-            margin-top: 5px;
-        }
-
-        /* =============================================
-           NOVOS ESTILOS DO INTERRUPTOR (DARK MODE)
-           =============================================
-        */
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1000;
-        }
-
-        .theme-switch-wrapper .fas {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-
-        /* Escondendo o checkbox padrão */
-        .theme-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .theme-switch {
-            position: relative;
-            display: inline-block;
-            width: 44px; /* Tamanho menor */
-            height: 24px; /* Tamanho menor */
-        }
-
-        /* A base do slider */
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--border-dark);
-            transition: .4s;
-        }
-
-        /* O círculo que se move */
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px; /* Menor */
-            width: 18px;  /* Menor */
-            left: 3px;    /* Ajustado */
-            bottom: 3px;  /* Ajustado */
-            background-color: white;
-            transition: .4s;
-        }
-
-        /* Quando checado, muda a cor do slider */
-        input:checked + .slider {
-            background-color: var(--text-link); 
-        }
-
-        /* Quando checado, move o círculo */
-        input:checked + .slider:before {
-            transform: translateX(20px); /* Distância menor */
-        }
-
-        /* Deixa o slider redondo */
-        .slider.round {
-            border-radius: 24px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="theme-switch-wrapper">
         <i class="fas fa-sun"></i>
         <label class="theme-switch" for="dark-mode-toggle">
-            <input type="checkbox" id="dark-mode-toggle" />
+            <input type="checkbox" id="dark-mode-toggle" checked /> 
             <div class="slider round"></div>
         </label>
         <i class="fas fa-moon"></i>
@@ -336,7 +20,8 @@
 
     <div class="page-container active" id="login-page">
         <div class="logo">
-            <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev">
+            <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev" class="logo-light">
+            <img src="https://i.postimg.cc/QFPSsW4Z/logo-full-dev-laranja-fundo-preto.png" alt="Logo Full Dev" class="logo-dark">
         </div>
         <h1>Bem-vindo(a)</h1>
         <p>Entre com sua conta para continuar</p>
@@ -371,7 +56,8 @@
 
     <div class="page-container" id="reset-page">
         <div class="logo">
-            <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev">
+            <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev" class="logo-light">
+            <img src="https://i.postimg.cc/QFPSsW4Z/logo-full-dev-laranja-fundo-preto.png" alt="Logo Full Dev" class="logo-dark">
         </div>
         <h1>Esqueceu sua senha?</h1>
         <p>Por favor, insira o endereço de e-mail utilizado para criar sua conta</p>
@@ -393,7 +79,8 @@
     <div class="page-container" id="confirmation-reset-page">
         <div class="full-page-content">
             <div class="logo">
-                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev">
+                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev" class="logo-light">
+                <img src="https://i.postimg.cc/QFPSsW4Z/logo-full-dev-laranja-fundo-preto.png" alt="Logo Full Dev" class="logo-dark">
             </div>
             <h1>Requisição Enviada!</h1>
             <p>Um link para redefinição de senha foi enviado para:<span id="email-display" class="highlight-email"></span></p>
@@ -406,7 +93,8 @@
     <div class="page-container" id="home-page">
         <div class="full-page-content">
             <div class="logo">
-                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev">
+                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev" class="logo-light">
+                <img src="https://i.postimg.cc/QFPSsW4Z/logo-full-dev-laranja-fundo-preto.png" alt="Logo Full Dev" class="logo-dark">
             </div>
             <h1>Bem-vindo à página inicial!</h1>
             <p>Você entrou com sucesso e está pronto para continuar.</p>
@@ -417,7 +105,8 @@
     <div class="page-container" id="confirmacao-page">
         <div class="full-page-content">
             <div class="logo">
-                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev">
+                <img src="https://i.postimg.cc/bwRXNC0Q/Gemini-Generated-Image-72vph072vph072vp-removebg-preview.png" alt="Logo Full Dev" class="logo-light">
+                <img src="https://i.postimg.cc/QFPSsW4Z/logo-full-dev-laranja-fundo-preto.png" alt="Logo Full Dev" class="logo-dark">
             </div>
             <h1>Confirmação concluída!</h1>
             <p>Você chegou à página final da demonstração de navegação.</p>
@@ -427,8 +116,6 @@
 
     <script>
         let lastEmail = ''; 
-        
-        /* --- LÓGICA DE NAVEGAÇÃO DE PÁGINA --- */
         
         function showPage(pageId) {
             document.querySelectorAll('.page-container').forEach(page => {
@@ -447,7 +134,6 @@
             const senha = document.getElementById("senha").value;
 
             if (usuario && senha) {
-                // Simplesmente simula um login bem-sucedido
                 showPage('home-page');
             } else {
                 alert("Por favor, preencha todos os campos!");
@@ -462,37 +148,33 @@
             if (email) {
                 lastEmail = email; 
                 showPage('confirmation-reset-page');
-                emailInput.value = ''; // Limpa o campo
+                emailInput.value = '';
             } else {
                 alert("Por favor, insira seu e-mail.");
             }
         });
 
-        /* --- LÓGICA DO DARK MODE --- */
-
-        // Seleciona o interruptor
         const toggleSwitch = document.getElementById('dark-mode-toggle');
 
-        // Função para aplicar o tema
         function setTheme(isDark) {
             if (isDark) {
                 document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark'); // Salva a preferência
+                localStorage.setItem('theme', 'dark');
                 toggleSwitch.checked = true;
             } else {
                 document.body.classList.remove('dark-mode');
-                localStorage.removeItem('theme'); // Remove a preferência
+                localStorage.setItem('theme', 'light');
                 toggleSwitch.checked = false;
             }
         }
 
-        // Verifica o localStorage ao carregar a página
         const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            setTheme(true);
+        if (currentTheme === 'light') { 
+            setTheme(false);
+        } else {
+            setTheme(true); 
         }
 
-        // Adiciona o listener para o clique no interruptor
         toggleSwitch.addEventListener('change', function() {
             setTheme(this.checked);
         });
