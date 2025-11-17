@@ -19,8 +19,8 @@
 }
 
 body.dark-mode {
-    --page-bg: #000000; /* Fundo preto puro */
-    --container-bg: #1a1a1a; /* Container cinza muito escuro */
+    --page-bg: #000000;
+    --container-bg: #1a1a1a;
     --text-primary: #f1f1f1;
     --text-secondary: #a0a0a0;
     --text-placeholder: #777;
@@ -72,6 +72,8 @@ body {
 
 .logo .logo-dark {
     display: none;
+    /* PINTA O LOGO BRANCO COM A COR LARANJA DO BOTÃO */
+    filter: drop-shadow(0 0 0 var(--button-bg)); 
 }
 
 body.dark-mode .logo .logo-light {
